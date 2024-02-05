@@ -1,7 +1,7 @@
 [project]
-name = "regexmatch"
+name = "saliency_check"
 version = "0.0.0"
-description = "Template repo for Guardrails Hub validators."
+description = "Checks that the summary covers the list of topics present in the document."
 authors = [
     {name = "Guardrails AI", email = "contact@guardrailsai.com"}
 ]
