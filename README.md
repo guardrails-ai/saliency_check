@@ -22,6 +22,10 @@ This validator is only intended for summarization.
 
 ## Installation
 
+```bash
+$ guardrails hub install hub://guardrails/salienc
+```
+
 ## Usage Examples
 
 ### Validating string output via Python
