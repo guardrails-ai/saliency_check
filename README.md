@@ -23,7 +23,7 @@ This validator is only intended for summarization.
 ## Installation
 
 ```bash
-$ guardrails hub install hub://guardrails/salienc
+$ guardrails hub install hub://guardrails/saliency_check
 ```
 
 ## Usage Examples
