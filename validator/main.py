@@ -9,7 +9,8 @@ from guardrails.validator_base import (
     Validator,
     register_validator,
 )
-from litellm import completion
+from guardrails.stores.context import get_call_kwarg
+from litellm import completion, get_llm_provider
 
 
 @register_validator(name="guardrails/saliency_check", data_type="string")
@@ -119,11 +120,20 @@ class SaliencyCheck(Validator):
         """
         # 0. Create messages
         messages = [{"content": prompt, "role": "user"}]
+        
+        # 0b. Setup auth kwargs if the model is from OpenAI
+        kwargs = {}
+        _model, provider, *_rest = get_llm_provider(self.llm_callable)
+        print("self.llm_callable: ",  self.llm_callable)
+        print("provider: ",  provider)
+        if provider == "openai":
+            kwargs["api_key"] = get_call_kwarg("api_key") or os.environ.get("OPENAI_API_KEY")
+            print("kwargs: ", kwargs)
 
         # 1. Get LLM response
         # Strip whitespace and convert to lowercase
         try:
-            response = completion(model=self.llm_callable, messages=messages)
+            response = completion(model=self.llm_callable, messages=messages, **kwargs)
             response = response.choices[0].message.content  # type: ignore
             response = response.strip().lower()
         except Exception as e:
