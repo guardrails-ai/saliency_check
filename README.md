@@ -1,10 +1,9 @@
 ## Overview
 
 | Developed by | Guardrails AI |
-| --- | --- |
 | Date of development | Feb 15, 2024 |
 | Validator type | - |
-| Blog | - |
+| Blog |  |
 | License | Apache 2 |
 | Input/Output | Output |
 
@@ -14,17 +13,21 @@ This validator checks that an LLM-generated summary covers the list of topics pr
 
 ### Intended use
 
-This validator is only intended for summarization. 
+This validator is only intended for summarization.
 
 ### Requirements
-- Dependencies:
-    * `litellm`
-- Foundation model access keys: Yes (depending on the selected foundation model)
+
+* Dependencies:
+    - `litellm`
+    - guardrails-ai>=0.4.0
+
+* Foundation model access keys:
+    - Yes (depending on the selected foundation model)
 
 ## Installation
 
 ```bash
-guardrails hub install hub://guardrails/saliency_check
+$ guardrails hub install hub://guardrails/saliency_check
 ```
 
 ## Usage Examples
@@ -80,7 +83,7 @@ does not cover these topics:
 {'ramaytush ohlone language', 'treaty of san francisco', 'per capita income', 'summer of love', 'united nations charter', 'mission san francisco de asís', 'aggregate income', 'city and county of san francisco', 'land area', 'european settlement', 'san francisco', 'san francisco peninsula', 'california gold rush', 'gay rights movement', 'liberal activism', 'colloquial nicknames', 'northern california', 'yelamu tribe', 'world war ii', '1906 earthquake and fire', 'presidio of san francisco', 'panama-pacific international exposition', 'population'}
 ```
 
-## API Reference
+# API Reference
 
 **`__init__(self, docs_dir, llm_callable="gpt-3.5-turbo", threshold=0.25, on_fail="noop")`**
 <ul>
@@ -98,7 +101,7 @@ Initializes a new instance of the Validator class.
 
 <br>
 
-**`__call__(self, value, metadata={}) → ValidationResult`**
+**`validate(self, value, metadata={}) -> ValidationResult`**
 
 <ul>
 
